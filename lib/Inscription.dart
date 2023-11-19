@@ -16,7 +16,7 @@ class InscriptionPage extends StatelessWidget {
             children: [
               HeaderImage(),
               SizedBox(height: 20),
-              MiddleImage(),
+              MiddleImage(), // Ajout de la deuxième image
               SizedBox(height: 20),
               FormContainer(),
             ],
@@ -43,6 +43,16 @@ class HeaderImage extends StatelessWidget {
           bottomRight: Radius.circular(20),
         ),
       ),
+      child: Center(
+        child: Text(
+          'Inscription',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontFamily: 'Inria Serif',
+          ),
+        ),
+      ),
     );
   }
 }
@@ -55,18 +65,10 @@ class MiddleImage extends StatelessWidget {
       height: 200,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/young man with laptop on chair.png'),
+          image: AssetImage('assets/images/young_man_with_laptop_on_chair.png'), // Correction du chemin de l'image
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
       ),
     );
   }
@@ -78,28 +80,25 @@ class FormContainer extends StatelessWidget {
     return Container(
       width: 400,
       padding: EdgeInsets.all(20),
+      margin: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey[200], // Couleur de fond gris
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
       ),
       child: Column(
         children: [
-          EmailTextField(),
-          SizedBox(height: 10),
-          PhoneTextField(),
-          SizedBox(height: 10),
-          PasswordTextField(),
-          SizedBox(height: 10),
-          ConfirmPasswordTextField(),
-          SizedBox(height: 10),
+          CustomTextField(label: 'Email', icon: Icons.email),
+          CustomTextField(label: 'Téléphone', icon: Icons.phone),
+          CustomTextField(
+            label: 'Mot de Passe',
+            icon: Icons.lock,
+            isPassword: true,
+          ),
+          CustomTextField(
+            label: 'Confirmer Mot de Passe',
+            icon: Icons.lock,
+            isPassword: true,
+          ),
           SizedBox(height: 20),
           Divider(),
           SizedBox(height: 20),
@@ -110,7 +109,6 @@ class FormContainer extends StatelessWidget {
               fontSize: 13,
               fontFamily: 'Inria Serif',
               fontWeight: FontWeight.w400,
-              height: 0,
             ),
           ),
           SocialMediaIcons(),
@@ -122,55 +120,26 @@ class FormContainer extends StatelessWidget {
   }
 }
 
-class EmailTextField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        labelText: 'Email',
-        border: OutlineInputBorder(),
-        prefixIcon: Icon(Icons.email),
-      ),
-    );
-  }
-}
+class CustomTextField extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final bool isPassword;
 
-class PhoneTextField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        labelText: 'Téléphone',
-        border: OutlineInputBorder(),
-        prefixIcon: Icon(Icons.phone),
-      ),
-    );
-  }
-}
+  const CustomTextField({
+    Key? key,
+    required this.label,
+    required this.icon,
+    this.isPassword = false,
+  }) : super(key: key);
 
-class PasswordTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      obscureText: true,
+      obscureText: isPassword,
       decoration: InputDecoration(
-        labelText: 'Mot de Passe',
-        border: OutlineInputBorder(),
-        suffixIcon: Icon(Icons.visibility),
-      ),
-    );
-  }
-}
-
-class ConfirmPasswordTextField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      obscureText: true,
-      decoration: InputDecoration(
-        labelText: 'Confirmer Mot de Passe',
-        border: OutlineInputBorder(),
-        suffixIcon: Icon(Icons.visibility),
+        labelText: label,
+        border: UnderlineInputBorder(),
+        prefixIcon: Icon(icon),
       ),
     );
   }
@@ -179,32 +148,25 @@ class ConfirmPasswordTextField extends StatelessWidget {
 class InscrireButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.orange,
-        borderRadius: BorderRadius.circular(30),
+    return ElevatedButton(
+      onPressed: () {
+        // Action à effectuer lors du clic sur le bouton
+      },
+      style: ElevatedButton.styleFrom(
+        primary: Colors.orange,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'S\'inscrire',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
+          Text('S\'inscrire', style: TextStyle(color: Colors.white)),
           SizedBox(width: 10),
-          Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-            ),
-            child: Icon(
-              Icons.arrow_forward,
-              color: Colors.orange,
-            ),
+          CircleAvatar(
+            radius: 10,
+            backgroundColor: Colors.white,
+            child: Icon(Icons.arrow_forward, color: Colors.orange),
           ),
         ],
       ),
@@ -219,8 +181,7 @@ class SocialMediaIcons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SocialMediaIcon(icon: Icons.facebook, color: Colors.blue),
-        SocialMediaIcon(icon: Icons.link, color: Colors.grey),
-        SocialMediaIcon(icon: Icons.mail, color: Colors.red),
+        SocialMediaIcon(icon: Icons.link, color: Colors.red),
       ],
     );
   }
