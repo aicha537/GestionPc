@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(AccueilPage());
-}
+
 
 class AccueilPage extends StatelessWidget {
-  List imgSrc=[
-    "images/pc.png",
-    "images/Demande.png",
-    "images/notification.png",
-    "image/historique.png",
-  ]
+  List<String> imgSrc = [
+    'assets/images/pc.png',
+    'assets/images/Demande.png',
+    'assets/images/notification.png',
+    'assets/images/historique.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -88,9 +87,10 @@ class AccueilPage extends StatelessWidget {
                       height: 55,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      margin: EdgeInsets.symmetric(vertical: 30),
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical:5),
                       child: Row(
                         children: [
                           Icon(
@@ -133,51 +133,51 @@ class AccueilPage extends StatelessWidget {
                       topLeft: Radius.circular(70),
                     ),
                   ),
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:2, 
-                    childAspectRatio: 1.1,
-                mainAxisSpacing: 25,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 85,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
                     ),
-                  
-                shrinkWrap: true,
-                
-                physics: NeverScrollableScrollPhysics(),
-                itemCount:6 ,
-                itemBuilder: (context, index){
-                  return InkWell(
-                    onTap: (){},
-                    child: Container(
-                      margin: EdgeInsets.symmetric(vertical:8, horizontal:20),
-                      decoration: BoxDecoration (
-                        border: BorderRadius.circular(20),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            spreadRadius: 1,
-                            blurRadius: 6,
-                          )
-                        ],
-                      ),
-                      child:Column(
-                        mainAxisAlignment:MainAxisAlignment.spaceEvenly ,
-                        chidren:[
-                          Image.asset("name")
-                      
-                        ]
-                        
-                      )
-                    ) ,
-                  )
-                }
-                
-                ),
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: imgSrc.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {},
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                spreadRadius: 1,
+                                blurRadius: 6,
+                              )
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Image.asset(
+                                imgSrc[index],
+                                height: 50, // Ajustez la taille de l'image selon vos besoins
+                              ),
+                              // Ajoutez d'autres éléments ici selon vos besoins
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
           ),
-          
         ),
       ),
     );

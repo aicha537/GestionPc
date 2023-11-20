@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(InscriptionPage());
-}
 
 class InscriptionPage extends StatelessWidget {
   @override
