@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-const String quicksand = 'Quicksand';
+ String quicksand = 'Quicksand';
 
-class FormulAttribution extends StatelessWidget {
-  const FormulAttribution({Key? key});
+class FormulAttribution extends StatefulWidget {
+  
+  @override
+  State<FormulAttribution> createState() => _FormulAttributionState();
+}
 
+class _FormulAttributionState extends State<FormulAttribution> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

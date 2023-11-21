@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:gestionpc/Demarrage.dart';
 import 'package:gestionpc/FormulaireAttribution.dart';
+import 'package:gestionpc/Notification.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // home: Demarrage(),
-        home: FormulAttribution());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // home: Demarrage(),
+      home:NotificationPage(),
+    );
   }
 }
